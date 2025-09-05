@@ -681,30 +681,30 @@ export default function CreatorRegistration() {
 
         {/* Progress Steps */}
         <div className="mb-8">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between overflow-x-auto">
             {steps.map((step, index) => (
-              <div key={step.id} className="flex items-center">
-                <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
+              <div key={step.id} className="flex items-center min-w-0 flex-1">
+                <div className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 ${
                   currentStep >= step.id
                     ? "bg-pink-500 border-pink-500 text-white"
                     : "border-gray-300 text-gray-500"
                 }`}>
                   {currentStep > step.id ? (
-                    <CheckCircle className="w-5 h-5" />
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                   ) : (
-                    <span className="text-sm font-medium">{step.id}</span>
+                    <span className="text-xs sm:text-sm font-medium">{step.id}</span>
                   )}
                 </div>
-                <div className="ml-3 hidden md:block">
-                  <p className={`text-sm font-medium ${
+                <div className="ml-2 sm:ml-3 hidden sm:block min-w-0">
+                  <p className={`text-xs sm:text-sm font-medium truncate ${
                     currentStep >= step.id ? "text-gray-800" : "text-gray-500"
                   }`}>
                     {step.title}
                   </p>
-                  <p className="text-xs text-gray-500">{step.description}</p>
+                  <p className="text-xs text-gray-500 truncate">{step.description}</p>
                 </div>
                 {index < steps.length - 1 && (
-                  <div className={`w-16 h-0.5 mx-4 ${
+                  <div className={`w-8 sm:w-16 h-0.5 mx-2 sm:mx-4 ${
                     currentStep > step.id ? "bg-pink-500" : "bg-gray-300"
                   }`} />
                 )}
@@ -714,16 +714,16 @@ export default function CreatorRegistration() {
         </div>
 
         {/* Form Content */}
-        <div className="bg-white rounded-2xl shadow-sm p-8">
+        <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-6 lg:p-8">
           {renderStepContent()}
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between mt-8">
+        <div className="flex flex-col sm:flex-row justify-between gap-4 mt-8">
           <button
             onClick={handlePrevious}
             disabled={currentStep === 1}
-            className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+            className={`px-6 py-3 rounded-lg font-medium transition-colors w-full sm:w-auto ${
               currentStep === 1
                 ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
@@ -736,7 +736,7 @@ export default function CreatorRegistration() {
           {currentStep < steps.length ? (
             <button
               onClick={handleNext}
-              className="bg-pink-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-pink-600 transition-colors"
+              className="bg-pink-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-pink-600 transition-colors w-full sm:w-auto"
             >
               次へ
               <ArrowRight className="w-4 h-4 inline ml-2" />
@@ -744,7 +744,7 @@ export default function CreatorRegistration() {
           ) : (
             <button
               onClick={handleSubmit}
-              className="bg-pink-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-pink-600 transition-colors"
+              className="bg-pink-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-pink-600 transition-colors w-full sm:w-auto"
             >
               申請する
             </button>

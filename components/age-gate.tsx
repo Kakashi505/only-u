@@ -46,16 +46,16 @@ export default function AgeGate() {
           </p>
         </div>
 
-        <div className="flex gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => handleConfirm(true)}
-            className="px-8 py-3 bg-pink-600 hover:bg-pink-700 rounded-lg font-semibold text-lg transition-colors"
+            className="px-8 py-3 bg-pink-600 hover:bg-pink-700 rounded-lg font-semibold text-lg transition-colors w-full sm:w-auto"
           >
             はい
           </button>
           <button
             onClick={() => handleConfirm(false)}
-            className="px-8 py-3 bg-gray-600 hover:bg-gray-700 rounded-lg font-semibold text-lg transition-colors"
+            className="px-8 py-3 bg-gray-600 hover:bg-gray-700 rounded-lg font-semibold text-lg transition-colors w-full sm:w-auto"
           >
             いいえ
           </button>
