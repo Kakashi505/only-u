@@ -151,18 +151,18 @@ export default function RankingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 py-6">
+      <div className="max-w-6xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
         {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">ランキング</h1>
+        <div className="mb-4 sm:mb-6">
+          <h1 className="text-lg sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">ランキング</h1>
           
           {/* Time Range Selector */}
-          <div className="flex gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
             {timeRanges.map((range) => (
               <button
                 key={range.value}
                 onClick={() => setTimeRange(range.value)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                   timeRange === range.value
                     ? "bg-pink-500 text-white"
                     : "bg-white text-gray-700 hover:bg-pink-50 hover:text-pink-600"
@@ -174,10 +174,10 @@ export default function RankingPage() {
           </div>
 
           {/* Tabs */}
-          <div className="flex gap-4 mb-6">
+          <div className="flex gap-2 sm:gap-4 mb-4 sm:mb-6">
             <button
               onClick={() => setActiveTab("posts")}
-              className={`px-6 py-3 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                 activeTab === "posts"
                   ? "bg-pink-500 text-white"
                   : "bg-white text-gray-700 hover:bg-pink-50 hover:text-pink-600"
@@ -187,7 +187,7 @@ export default function RankingPage() {
             </button>
             <button
               onClick={() => setActiveTab("creators")}
-              className={`px-6 py-3 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                 activeTab === "creators"
                   ? "bg-pink-500 text-white"
                   : "bg-white text-gray-700 hover:bg-pink-50 hover:text-pink-600"
@@ -201,36 +201,36 @@ export default function RankingPage() {
         {/* Rankings Content */}
         {activeTab === "posts" && (
           <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-800">投稿ランキング</h2>
-              <p className="text-sm text-gray-500 mt-1">人気の投稿をチェック</p>
+            <div className="p-3 sm:p-6 border-b border-gray-200">
+              <h2 className="text-base sm:text-lg font-semibold text-gray-800">投稿ランキング</h2>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">人気の投稿をチェック</p>
             </div>
             
             <div className="divide-y divide-gray-200">
               {postRankings.map((post) => (
-                <div key={post.id} className="p-6 hover:bg-gray-50 transition-colors">
-                  <div className="flex items-center gap-4">
+                <div key={post.id} className="p-3 sm:p-6 hover:bg-gray-50 transition-colors">
+                  <div className="flex items-center gap-2 sm:gap-4">
                     {/* Rank */}
-                    <div className="flex items-center gap-2">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                    <div className="flex items-center gap-1 sm:gap-2">
+                      <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold ${
                         post.rank <= 3 ? "bg-pink-500 text-white" : "bg-gray-200 text-gray-700"
                       }`}>
                         {post.rank}
                       </div>
                       {post.rankChange === "up" && (
                         <div className="flex items-center text-green-500">
-                          <ChevronUp className="w-4 h-4" />
+                          <ChevronUp className="w-3 h-3 sm:w-4 sm:h-4" />
                           <span className="text-xs">{post.changeValue}</span>
                         </div>
                       )}
                       {post.rankChange === "down" && (
                         <div className="flex items-center text-red-500">
-                          <ChevronDown className="w-4 h-4" />
+                          <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
                           <span className="text-xs">{post.changeValue}</span>
                         </div>
                       )}
                       {post.rankChange === "new" && (
-                        <div className="px-2 py-1 bg-green-100 text-green-600 text-xs rounded">
+                        <div className="px-1 sm:px-2 py-1 bg-green-100 text-green-600 text-xs rounded">
                           NEW
                         </div>
                       )}
@@ -241,7 +241,7 @@ export default function RankingPage() {
                       <img
                         src={post.image}
                         alt={post.title}
-                        className="w-20 h-20 rounded-lg object-cover"
+                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg object-cover"
                       />
                       {post.price > 0 && (
                         <div className="absolute top-1 right-1 bg-pink-500 text-white px-1 py-0.5 rounded text-xs">
@@ -251,24 +251,24 @@ export default function RankingPage() {
                     </div>
 
                     {/* Post Info */}
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-800 mb-1">{post.title}</h3>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-800 mb-1 text-sm sm:text-base truncate">{post.title}</h3>
                       <div className="flex items-center gap-2 mb-2">
                         <img
                           src={post.avatar}
                           alt={post.creator}
-                          className="w-5 h-5 rounded-full"
+                          className="w-4 h-4 sm:w-5 sm:h-5 rounded-full"
                         />
-                        <span className="text-sm text-gray-600">{post.creator}</span>
+                        <span className="text-xs sm:text-sm text-gray-600 truncate">{post.creator}</span>
                       </div>
                       
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500">
                         <div className="flex items-center gap-1">
-                          <Heart className="w-4 h-4" />
+                          <Heart className="w-3 h-3 sm:w-4 sm:h-4" />
                           {post.likes.toLocaleString()}
                         </div>
                         <div className="flex items-center gap-1">
-                          <Eye className="w-4 h-4" />
+                          <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
                           {post.views.toLocaleString()}
                         </div>
                         {post.revenue > 0 && (
@@ -280,7 +280,7 @@ export default function RankingPage() {
                     </div>
 
                     {/* Action Button */}
-                    <button className="bg-pink-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-pink-600 transition-colors">
+                    <button className="bg-pink-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-pink-600 transition-colors">
                       購入
                     </button>
                   </div>
@@ -292,36 +292,36 @@ export default function RankingPage() {
 
         {activeTab === "creators" && (
           <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-800">クリエイターランキング</h2>
-              <p className="text-sm text-gray-500 mt-1">人気のクリエイターをチェック</p>
+            <div className="p-3 sm:p-6 border-b border-gray-200">
+              <h2 className="text-base sm:text-lg font-semibold text-gray-800">クリエイターランキング</h2>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">人気のクリエイターをチェック</p>
             </div>
             
             <div className="divide-y divide-gray-200">
               {creatorRankings.map((creator) => (
-                <div key={creator.id} className="p-6 hover:bg-gray-50 transition-colors">
-                  <div className="flex items-center gap-4">
+                <div key={creator.id} className="p-3 sm:p-6 hover:bg-gray-50 transition-colors">
+                  <div className="flex items-center gap-2 sm:gap-4">
                     {/* Rank */}
-                    <div className="flex items-center gap-2">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                    <div className="flex items-center gap-1 sm:gap-2">
+                      <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold ${
                         creator.rank <= 3 ? "bg-pink-500 text-white" : "bg-gray-200 text-gray-700"
                       }`}>
                         {creator.rank}
                       </div>
                       {creator.rankChange === "up" && (
                         <div className="flex items-center text-green-500">
-                          <ChevronUp className="w-4 h-4" />
+                          <ChevronUp className="w-3 h-3 sm:w-4 sm:h-4" />
                           <span className="text-xs">{creator.changeValue}</span>
                         </div>
                       )}
                       {creator.rankChange === "down" && (
                         <div className="flex items-center text-red-500">
-                          <ChevronDown className="w-4 h-4" />
+                          <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
                           <span className="text-xs">{creator.changeValue}</span>
                         </div>
                       )}
                       {creator.rankChange === "new" && (
-                        <div className="px-2 py-1 bg-green-100 text-green-600 text-xs rounded">
+                        <div className="px-1 sm:px-2 py-1 bg-green-100 text-green-600 text-xs rounded">
                           NEW
                         </div>
                       )}
@@ -332,7 +332,7 @@ export default function RankingPage() {
                       <img
                         src={creator.avatar}
                         alt={creator.name}
-                        className="w-16 h-16 rounded-full object-cover"
+                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover"
                       />
                       {creator.isVerified && (
                         <div className="absolute -bottom-1 -right-1 bg-blue-500 text-white rounded-full p-1">
@@ -342,31 +342,31 @@ export default function RankingPage() {
                     </div>
 
                     {/* Creator Info */}
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-800 mb-1">{creator.name}</h3>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-800 mb-1 text-sm sm:text-base truncate">{creator.name}</h3>
                       
-                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-2">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500 mb-2">
                         <div className="flex items-center gap-1">
-                          <Users className="w-4 h-4" />
+                          <Users className="w-3 h-3 sm:w-4 sm:h-4" />
                           {creator.subscribers.toLocaleString()}人
                         </div>
                         <div className="flex items-center gap-1">
-                          <TrendingUp className="w-4 h-4" />
+                          <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" />
                           {creator.posts}投稿
                         </div>
                       </div>
                       
-                      <div className="text-pink-500 font-medium">
+                      <div className="text-pink-500 font-medium text-xs sm:text-sm">
                         売上: ¥{creator.revenue.toLocaleString()}
                       </div>
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-2">
-                      <button className="bg-pink-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-pink-600 transition-colors">
+                    <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">
+                      <button className="bg-pink-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-pink-600 transition-colors">
                         フォロー
                       </button>
-                      <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50 transition-colors">
+                      <button className="px-3 sm:px-4 py-1.5 sm:py-2 border border-gray-300 text-gray-700 rounded-lg text-xs sm:text-sm hover:bg-gray-50 transition-colors">
                         プロフィール
                       </button>
                     </div>
@@ -378,8 +378,8 @@ export default function RankingPage() {
         )}
 
         {/* Load More */}
-        <div className="text-center mt-8">
-          <button className="bg-pink-500 text-white px-8 py-3 rounded-lg font-medium hover:bg-pink-600 transition-colors">
+        <div className="text-center mt-6 sm:mt-8">
+          <button className="bg-pink-500 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-medium hover:bg-pink-600 transition-colors">
             もっと見る
           </button>
         </div>
