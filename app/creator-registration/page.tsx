@@ -168,62 +168,62 @@ export default function CreatorRegistration() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">基本情報</h2>
+          <div className="space-y-4 sm:space-y-6">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">基本情報</h2>
             
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   氏名 <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.fullName}
                   onChange={(e) => handleInputChange("fullName", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="田中 花子"
                 />
-                {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
+                {errors.fullName && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.fullName}</p>}
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   フリガナ <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.fullNameKana}
                   onChange={(e) => handleInputChange("fullNameKana", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="タナカ ハナコ"
                 />
-                {errors.fullNameKana && <p className="text-red-500 text-sm mt-1">{errors.fullNameKana}</p>}
+                {errors.fullNameKana && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.fullNameKana}</p>}
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   生年月日 <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="date"
                   value={formData.birthDate}
                   onChange={(e) => handleInputChange("birthDate", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   title="生年月日を選択してください"
                 />
-                {errors.birthDate && <p className="text-red-500 text-sm mt-1">{errors.birthDate}</p>}
+                {errors.birthDate && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.birthDate}</p>}
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   性別 <span className="text-red-500">*</span>
                 </label>
                 <select
                   value={formData.gender}
                   onChange={(e) => handleInputChange("gender", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   title="性別を選択してください"
                 >
                   <option value="">選択してください</option>
@@ -231,37 +231,37 @@ export default function CreatorRegistration() {
                   <option value="female">女性</option>
                   <option value="other">その他</option>
                 </select>
-                {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender}</p>}
+                {errors.gender && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.gender}</p>}
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   電話番号 <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
                   value={formData.phoneNumber}
                   onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="090-1234-5678"
                 />
-                {errors.phoneNumber && <p className="text-red-500 text-sm mt-1">{errors.phoneNumber}</p>}
+                {errors.phoneNumber && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.phoneNumber}</p>}
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   メールアドレス <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="example@email.com"
                 />
-                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                {errors.email && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.email}</p>}
               </div>
             </div>
           </div>
@@ -269,8 +269,8 @@ export default function CreatorRegistration() {
 
       case 2:
         return (
-          <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">住所情報</h2>
+          <div className="space-y-4 sm:space-y-6">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">住所情報</h2>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -283,18 +283,18 @@ export default function CreatorRegistration() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                 placeholder="123-4567"
               />
-              {errors.postalCode && <p className="text-red-500 text-sm mt-1">{errors.postalCode}</p>}
+              {errors.postalCode && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.postalCode}</p>}
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   都道府県 <span className="text-red-500">*</span>
                 </label>
                 <select
                   value={formData.prefecture}
                   onChange={(e) => handleInputChange("prefecture", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   title="都道府県を選択してください"
                 >
                   <option value="">選択してください</option>
@@ -302,21 +302,21 @@ export default function CreatorRegistration() {
                     <option key={pref} value={pref}>{pref}</option>
                   ))}
                 </select>
-                {errors.prefecture && <p className="text-red-500 text-sm mt-1">{errors.prefecture}</p>}
+                {errors.prefecture && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.prefecture}</p>}
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   市区町村 <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.city}
                   onChange={(e) => handleInputChange("city", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="渋谷区"
                 />
-                {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
+                {errors.city && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.city}</p>}
               </div>
             </div>
 
@@ -331,7 +331,7 @@ export default function CreatorRegistration() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                 placeholder="道玄坂1-2-3"
               />
-              {errors.address1 && <p className="text-red-500 text-sm mt-1">{errors.address1}</p>}
+              {errors.address1 && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.address1}</p>}
             </div>
 
             <div>
@@ -351,8 +351,8 @@ export default function CreatorRegistration() {
 
       case 3:
         return (
-          <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">本人確認</h2>
+          <div className="space-y-4 sm:space-y-6">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">本人確認</h2>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -370,12 +370,12 @@ export default function CreatorRegistration() {
                 <option value="my_number">マイナンバーカード</option>
                 <option value="residence_card">在留カード</option>
               </select>
-              {errors.idType && <p className="text-red-500 text-sm mt-1">{errors.idType}</p>}
+              {errors.idType && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.idType}</p>}
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   身分証明書（表面） <span className="text-red-500">*</span>
                 </label>
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
@@ -395,11 +395,11 @@ export default function CreatorRegistration() {
                 {formData.idFront && (
                   <p className="text-sm text-green-600 mt-2">✓ {formData.idFront.name}</p>
                 )}
-                {errors.idFront && <p className="text-red-500 text-sm mt-1">{errors.idFront}</p>}
+                {errors.idFront && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.idFront}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   身分証明書（裏面） <span className="text-red-500">*</span>
                 </label>
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
@@ -419,7 +419,7 @@ export default function CreatorRegistration() {
                 {formData.idBack && (
                   <p className="text-sm text-green-600 mt-2">✓ {formData.idBack.name}</p>
                 )}
-                {errors.idBack && <p className="text-red-500 text-sm mt-1">{errors.idBack}</p>}
+                {errors.idBack && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.idBack}</p>}
               </div>
             </div>
 
@@ -444,76 +444,76 @@ export default function CreatorRegistration() {
               {formData.selfie && (
                 <p className="text-sm text-green-600 mt-2">✓ {formData.selfie.name}</p>
               )}
-              {errors.selfie && <p className="text-red-500 text-sm mt-1">{errors.selfie}</p>}
+              {errors.selfie && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.selfie}</p>}
             </div>
           </div>
         )
 
       case 4:
         return (
-          <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">銀行口座情報</h2>
+          <div className="space-y-4 sm:space-y-6">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">銀行口座情報</h2>
             
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   銀行名 <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.bankName}
                   onChange={(e) => handleInputChange("bankName", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="三菱UFJ銀行"
                 />
-                {errors.bankName && <p className="text-red-500 text-sm mt-1">{errors.bankName}</p>}
+                {errors.bankName && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.bankName}</p>}
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   支店名 <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.branchName}
                   onChange={(e) => handleInputChange("branchName", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="渋谷支店"
                 />
-                {errors.branchName && <p className="text-red-500 text-sm mt-1">{errors.branchName}</p>}
+                {errors.branchName && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.branchName}</p>}
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   口座種別 <span className="text-red-500">*</span>
                 </label>
                 <select
                   value={formData.accountType}
                   onChange={(e) => handleInputChange("accountType", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   title="口座種別を選択してください"
                 >
                   <option value="">選択してください</option>
                   <option value="ordinary">普通預金</option>
                   <option value="savings">貯蓄預金</option>
                 </select>
-                {errors.accountType && <p className="text-red-500 text-sm mt-1">{errors.accountType}</p>}
+                {errors.accountType && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.accountType}</p>}
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   口座番号 <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.accountNumber}
                   onChange={(e) => handleInputChange("accountNumber", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="1234567"
                 />
-                {errors.accountNumber && <p className="text-red-500 text-sm mt-1">{errors.accountNumber}</p>}
+                {errors.accountNumber && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.accountNumber}</p>}
               </div>
             </div>
 
@@ -528,15 +528,15 @@ export default function CreatorRegistration() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                 placeholder="タナカ ハナコ"
               />
-              {errors.accountHolder && <p className="text-red-500 text-sm mt-1">{errors.accountHolder}</p>}
+              {errors.accountHolder && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.accountHolder}</p>}
             </div>
           </div>
         )
 
       case 5:
         return (
-          <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">コンテンツ情報</h2>
+          <div className="space-y-4 sm:space-y-6">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">コンテンツ情報</h2>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -561,7 +561,7 @@ export default function CreatorRegistration() {
                   </label>
                 ))}
               </div>
-              {errors.contentCategories && <p className="text-red-500 text-sm mt-1">{errors.contentCategories}</p>}
+              {errors.contentCategories && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.contentCategories}</p>}
             </div>
 
             <div>
@@ -575,47 +575,47 @@ export default function CreatorRegistration() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                 placeholder="あなたの活動内容や特技について教えてください..."
               />
-              {errors.bio && <p className="text-red-500 text-sm mt-1">{errors.bio}</p>}
+              {errors.bio && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.bio}</p>}
             </div>
 
             <div className="space-y-4">
               <h3 className="text-lg font-medium text-gray-800">SNSアカウント（任意）</h3>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   Instagram
                 </label>
                 <input
                   type="text"
                   value={formData.socialLinks.instagram}
                   onChange={(e) => handleInputChange("socialLinks", { ...formData.socialLinks, instagram: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="@username"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   Twitter
                 </label>
                 <input
                   type="text"
                   value={formData.socialLinks.twitter}
                   onChange={(e) => handleInputChange("socialLinks", { ...formData.socialLinks, twitter: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="@username"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   TikTok
                 </label>
                 <input
                   type="text"
                   value={formData.socialLinks.tiktok}
                   onChange={(e) => handleInputChange("socialLinks", { ...formData.socialLinks, tiktok: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm sm:text-base"
                   placeholder="@username"
                 />
               </div>
@@ -625,8 +625,8 @@ export default function CreatorRegistration() {
 
       case 6:
         return (
-          <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">申請内容の確認</h2>
+          <div className="space-y-4 sm:space-y-6">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">申請内容の確認</h2>
             
             <div className="bg-gray-50 rounded-lg p-6 space-y-4">
               <div>
@@ -672,31 +672,31 @@ export default function CreatorRegistration() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-6">
+      <div className="max-w-4xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">クリエイター登録</h1>
-          <p className="text-gray-600">OnlyUでクリエイターとして活動を始めましょう</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-lg sm:text-2xl font-bold text-gray-800 mb-2">クリエイター登録</h1>
+          <p className="text-sm sm:text-base text-gray-600">OnlyUでクリエイターとして活動を始めましょう</p>
         </div>
 
         {/* Progress Steps */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
+        <div className="mb-6 sm:mb-8">
+          <div className="flex items-center justify-between overflow-x-auto">
             {steps.map((step, index) => (
-              <div key={step.id} className="flex items-center">
-                <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
+              <div key={step.id} className="flex items-center min-w-0">
+                <div className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 ${
                   currentStep >= step.id
                     ? "bg-pink-500 border-pink-500 text-white"
                     : "border-gray-300 text-gray-500"
                 }`}>
                   {currentStep > step.id ? (
-                    <CheckCircle className="w-5 h-5" />
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                   ) : (
-                    <span className="text-sm font-medium">{step.id}</span>
+                    <span className="text-xs sm:text-sm font-medium">{step.id}</span>
                   )}
                 </div>
-                <div className="ml-3 hidden md:block">
-                  <p className={`text-sm font-medium ${
+                <div className="ml-2 sm:ml-3 hidden sm:block">
+                  <p className={`text-xs sm:text-sm font-medium ${
                     currentStep >= step.id ? "text-gray-800" : "text-gray-500"
                   }`}>
                     {step.title}
@@ -714,16 +714,16 @@ export default function CreatorRegistration() {
         </div>
 
         {/* Form Content */}
-        <div className="bg-white rounded-2xl shadow-sm p-8">
+        <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-8">
           {renderStepContent()}
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between mt-8">
+        <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0 mt-6 sm:mt-8">
           <button
             onClick={handlePrevious}
             disabled={currentStep === 1}
-            className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-medium transition-colors ${
               currentStep === 1
                 ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
@@ -736,7 +736,7 @@ export default function CreatorRegistration() {
           {currentStep < steps.length ? (
             <button
               onClick={handleNext}
-              className="bg-pink-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-pink-600 transition-colors"
+              className="bg-pink-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-medium hover:bg-pink-600 transition-colors"
             >
               次へ
               <ArrowRight className="w-4 h-4 inline ml-2" />
@@ -744,7 +744,7 @@ export default function CreatorRegistration() {
           ) : (
             <button
               onClick={handleSubmit}
-              className="bg-pink-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-pink-600 transition-colors"
+              className="bg-pink-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-medium hover:bg-pink-600 transition-colors"
             >
               申請する
             </button>

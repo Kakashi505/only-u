@@ -16,11 +16,14 @@ import {
   Download,
   Settings,
   MessageSquare,
-  Star
+  Star,
+  Menu,
+  X
 } from "lucide-react"
 
 export default function CreatorDashboard() {
   const [activeTab, setActiveTab] = useState("overview")
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   // Mock analytics data
   const analytics = {
@@ -150,25 +153,38 @@ export default function CreatorDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
         {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">クリエイターダッシュボード</h1>
-          <p className="text-gray-600">コンテンツと収益を管理しましょう</p>
+        <div className="mb-4 sm:mb-6">
+          <div className="flex items-center justify-between mb-2">
+            <div>
+              <h1 className="text-lg sm:text-2xl font-bold text-gray-800">クリエイターダッシュボード</h1>
+              <p className="text-sm sm:text-base text-gray-600">コンテンツと収益を管理しましょう</p>
+            </div>
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="lg:hidden p-2 rounded-lg bg-white shadow-sm border"
+            >
+              {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
 
-        <div className="grid lg:grid-cols-4 gap-6">
+        <div className="grid lg:grid-cols-4 gap-4 sm:gap-6">
           {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-sm p-4">
+          <div className={`lg:col-span-1 ${sidebarOpen ? 'block' : 'hidden lg:block'}`}>
+            <div className="bg-white rounded-2xl shadow-sm p-3 sm:p-4">
               <nav className="space-y-1">
                 {tabs.map((tab) => {
                   const Icon = tab.icon
                   return (
                     <button
                       key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      onClick={() => {
+                        setActiveTab(tab.id)
+                        setSidebarOpen(false)
+                      }}
+                      className={`w-full flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                         activeTab === tab.id
                           ? "bg-pink-500 text-white"
                           : "text-gray-600 hover:bg-gray-100"
@@ -188,47 +204,47 @@ export default function CreatorDashboard() {
             {activeTab === "overview" && (
               <div className="space-y-6">
                 {/* Stats Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
                   {stats.map((stat, index) => {
                     const Icon = stat.icon
                     return (
-                      <div key={index} className="bg-white rounded-2xl shadow-sm p-6">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className={`p-2 rounded-lg ${stat.color.replace('text-', 'bg-').replace('-600', '-100')}`}>
-                            <Icon className={`w-6 h-6 ${stat.color}`} />
+                      <div key={index} className="bg-white rounded-2xl shadow-sm p-3 sm:p-6">
+                        <div className="flex items-center justify-between mb-2 sm:mb-4">
+                          <div className={`p-1.5 sm:p-2 rounded-lg ${stat.color.replace('text-', 'bg-').replace('-600', '-100')}`}>
+                            <Icon className={`w-4 h-4 sm:w-6 sm:h-6 ${stat.color}`} />
                           </div>
-                          <div className={`flex items-center gap-1 text-sm ${
+                          <div className={`flex items-center gap-1 text-xs sm:text-sm ${
                             stat.change >= 0 ? "text-green-600" : "text-red-600"
                           }`}>
                             {stat.change >= 0 ? (
-                              <TrendingUp className="w-4 h-4" />
+                              <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" />
                             ) : (
-                              <TrendingDown className="w-4 h-4" />
+                              <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4" />
                             )}
                             {Math.abs(stat.change)}%
                           </div>
                         </div>
-                        <h3 className="text-2xl font-bold text-gray-800 mb-1">{stat.value}</h3>
-                        <p className="text-sm text-gray-500">{stat.title}</p>
+                        <h3 className="text-lg sm:text-2xl font-bold text-gray-800 mb-1">{stat.value}</h3>
+                        <p className="text-xs sm:text-sm text-gray-500">{stat.title}</p>
                       </div>
                     )
                   })}
                 </div>
 
                 {/* Recent Activity */}
-                <div className="bg-white rounded-2xl shadow-sm p-6">
-                  <h2 className="text-lg font-semibold text-gray-800 mb-4">最近の活動</h2>
+                <div className="bg-white rounded-2xl shadow-sm p-3 sm:p-6">
+                  <h2 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4">最近の活動</h2>
                   <div className="space-y-4">
                     {recentPosts.slice(0, 3).map((post) => (
-                      <div key={post.id} className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg">
+                      <div key={post.id} className="flex items-center gap-2 sm:gap-4 p-3 sm:p-4 border border-gray-200 rounded-lg">
                         <img
                           src={post.image}
                           alt={post.title}
-                          className="w-16 h-16 rounded-lg object-cover"
+                          className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover"
                         />
-                        <div className="flex-1">
-                          <h3 className="font-medium text-gray-800">{post.title}</h3>
-                          <div className="flex items-center gap-4 text-sm text-gray-500 mt-1">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-gray-800 text-sm sm:text-base truncate">{post.title}</h3>
+                          <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500 mt-1">
                             <span className="flex items-center gap-1">
                               <Eye className="w-4 h-4" />
                               {post.views}
@@ -256,10 +272,10 @@ export default function CreatorDashboard() {
 
             {activeTab === "posts" && (
               <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                <div className="p-6 border-b border-gray-200">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-semibold text-gray-800">投稿管理</h2>
-                    <button className="bg-pink-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-pink-600 transition-colors flex items-center gap-2">
+                <div className="p-3 sm:p-6 border-b border-gray-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <h2 className="text-base sm:text-lg font-semibold text-gray-800">投稿管理</h2>
+                    <button className="bg-pink-500 text-white px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-medium hover:bg-pink-600 transition-colors flex items-center gap-2">
                       <Plus className="w-4 h-4" />
                       新規投稿
                     </button>
@@ -268,16 +284,16 @@ export default function CreatorDashboard() {
                 
                 <div className="divide-y divide-gray-200">
                   {recentPosts.map((post) => (
-                    <div key={post.id} className="p-6">
-                      <div className="flex items-center gap-4">
+                    <div key={post.id} className="p-3 sm:p-6">
+                      <div className="flex items-center gap-3 sm:gap-4">
                         <img
                           src={post.image}
                           alt={post.title}
-                          className="w-20 h-20 rounded-lg object-cover"
+                          className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg object-cover"
                         />
-                        <div className="flex-1">
-                          <h3 className="font-medium text-gray-800 mb-1">{post.title}</h3>
-                          <div className="flex items-center gap-4 text-sm text-gray-500 mb-2">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-gray-800 mb-1 text-sm sm:text-base truncate">{post.title}</h3>
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500 mb-2">
                             <span className="flex items-center gap-1">
                               <Eye className="w-4 h-4" />
                               {post.views}回閲覧
@@ -295,14 +311,14 @@ export default function CreatorDashboard() {
                               ¥{post.earnings.toLocaleString()}収益
                             </span>
                           </div>
-                          <div className="text-sm text-gray-500">{post.createdAt}</div>
+                          <div className="text-xs sm:text-sm text-gray-500">{post.createdAt}</div>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <button className="p-2 text-gray-400 hover:text-gray-600" title="編集">
-                            <Edit className="w-4 h-4" />
+                        <div className="flex items-center gap-1 sm:gap-2">
+                          <button className="p-1.5 sm:p-2 text-gray-400 hover:text-gray-600" title="編集">
+                            <Edit className="w-3 h-3 sm:w-4 sm:h-4" />
                           </button>
-                          <button className="p-2 text-gray-400 hover:text-gray-600" title="その他">
-                            <MoreHorizontal className="w-4 h-4" />
+                          <button className="p-1.5 sm:p-2 text-gray-400 hover:text-gray-600" title="その他">
+                            <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4" />
                           </button>
                         </div>
                       </div>
@@ -314,10 +330,10 @@ export default function CreatorDashboard() {
 
             {activeTab === "subscribers" && (
               <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                <div className="p-6 border-b border-gray-200">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-semibold text-gray-800">購読者 ({subscribers.length})</h2>
-                    <button className="text-pink-500 hover:text-pink-600 font-medium flex items-center gap-2">
+                <div className="p-3 sm:p-6 border-b border-gray-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <h2 className="text-base sm:text-lg font-semibold text-gray-800">購読者 ({subscribers.length})</h2>
+                    <button className="text-pink-500 hover:text-pink-600 font-medium flex items-center gap-2 text-sm sm:text-base">
                       <Download className="w-4 h-4" />
                       エクスポート
                     </button>
@@ -326,24 +342,24 @@ export default function CreatorDashboard() {
                 
                 <div className="divide-y divide-gray-200">
                   {subscribers.map((subscriber) => (
-                    <div key={subscriber.id} className="p-6">
-                      <div className="flex items-center gap-4">
+                    <div key={subscriber.id} className="p-3 sm:p-6">
+                      <div className="flex items-center gap-3 sm:gap-4">
                         <img
                           src={subscriber.avatar}
                           alt={subscriber.name}
                           className="w-12 h-12 rounded-full object-cover"
                         />
-                        <div className="flex-1">
-                          <h3 className="font-medium text-gray-800">{subscriber.name}</h3>
-                          <div className="flex items-center gap-4 text-sm text-gray-500 mt-1">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-gray-800 text-sm sm:text-base truncate">{subscriber.name}</h3>
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500 mt-1">
                             <span>{subscriber.plan}</span>
                             <span>¥{subscriber.price}/月</span>
-                            <span>加入日: {subscriber.joinDate}</span>
+                            <span className="hidden sm:inline">加入日: {subscriber.joinDate}</span>
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-sm text-green-600 font-medium">アクティブ</div>
-                          <button className="text-sm text-pink-500 hover:text-pink-600 mt-1">
+                          <div className="text-xs sm:text-sm text-green-600 font-medium">アクティブ</div>
+                          <button className="text-xs sm:text-sm text-pink-500 hover:text-pink-600 mt-1">
                             メッセージ
                           </button>
                         </div>
@@ -355,33 +371,33 @@ export default function CreatorDashboard() {
             )}
 
             {activeTab === "analytics" && (
-              <div className="space-y-6">
-                <div className="bg-white rounded-2xl shadow-sm p-6">
-                  <h2 className="text-lg font-semibold text-gray-800 mb-4">パフォーマンス分析</h2>
-                  <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="bg-white rounded-2xl shadow-sm p-3 sm:p-6">
+                  <h2 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4">パフォーマンス分析</h2>
+                  <div className="h-48 sm:h-64 bg-gray-100 rounded-lg flex items-center justify-center">
                     <div className="text-center text-gray-500">
-                      <BarChart3 className="w-12 h-12 mx-auto mb-2" />
-                      <p>グラフがここに表示されます</p>
+                      <BarChart3 className="w-8 h-8 sm:w-12 sm:h-12 mx-auto mb-2" />
+                      <p className="text-sm sm:text-base">グラフがここに表示されます</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-white rounded-2xl shadow-sm p-6">
-                    <h3 className="font-semibold text-gray-800 mb-4">人気の投稿</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="bg-white rounded-2xl shadow-sm p-3 sm:p-6">
+                    <h3 className="font-semibold text-gray-800 mb-3 sm:mb-4 text-sm sm:text-base">人気の投稿</h3>
                     <div className="space-y-3">
                       {recentPosts.slice(0, 3).map((post, index) => (
-                        <div key={post.id} className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                        <div key={post.id} className="flex items-center gap-2 sm:gap-3">
+                          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-pink-500 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold">
                             {index + 1}
                           </div>
                           <img
                             src={post.image}
                             alt={post.title}
-                            className="w-12 h-12 rounded object-cover"
+                            className="w-10 h-10 sm:w-12 sm:h-12 rounded object-cover"
                           />
-                          <div className="flex-1">
-                            <h4 className="font-medium text-gray-800 text-sm">{post.title}</h4>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-medium text-gray-800 text-xs sm:text-sm truncate">{post.title}</h4>
                             <p className="text-xs text-gray-500">{post.views}回閲覧</p>
                           </div>
                         </div>
@@ -389,20 +405,20 @@ export default function CreatorDashboard() {
                     </div>
                   </div>
 
-                  <div className="bg-white rounded-2xl shadow-sm p-6">
-                    <h3 className="font-semibold text-gray-800 mb-4">エンゲージメント</h3>
+                  <div className="bg-white rounded-2xl shadow-sm p-3 sm:p-6">
+                    <h3 className="font-semibold text-gray-800 mb-3 sm:mb-4 text-sm sm:text-base">エンゲージメント</h3>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">エンゲージメント率</span>
-                        <span className="font-semibold text-gray-800">{analytics.engagement}%</span>
+                        <span className="text-xs sm:text-sm text-gray-600">エンゲージメント率</span>
+                        <span className="font-semibold text-gray-800 text-sm sm:text-base">{analytics.engagement}%</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">平均閲覧時間</span>
-                        <span className="font-semibold text-gray-800">2分34秒</span>
+                        <span className="text-xs sm:text-sm text-gray-600">平均閲覧時間</span>
+                        <span className="font-semibold text-gray-800 text-sm sm:text-base">2分34秒</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">リピート率</span>
-                        <span className="font-semibold text-gray-800">68%</span>
+                        <span className="text-xs sm:text-sm text-gray-600">リピート率</span>
+                        <span className="font-semibold text-gray-800 text-sm sm:text-base">68%</span>
                       </div>
                     </div>
                   </div>
@@ -411,45 +427,45 @@ export default function CreatorDashboard() {
             )}
 
             {activeTab === "earnings" && (
-              <div className="space-y-6">
-                <div className="bg-white rounded-2xl shadow-sm p-6">
-                  <h2 className="text-lg font-semibold text-gray-800 mb-4">収益概要</h2>
-                  <div className="grid md:grid-cols-3 gap-6">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="bg-white rounded-2xl shadow-sm p-3 sm:p-6">
+                  <h2 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4">収益概要</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-gray-800 mb-1">
+                      <div className="text-xl sm:text-3xl font-bold text-gray-800 mb-1">
                         ¥{analytics.totalEarnings.toLocaleString()}
                       </div>
-                      <div className="text-sm text-gray-500">総収益</div>
+                      <div className="text-xs sm:text-sm text-gray-500">総収益</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-gray-800 mb-1">
+                      <div className="text-xl sm:text-3xl font-bold text-gray-800 mb-1">
                         ¥{analytics.monthlyEarnings.toLocaleString()}
                       </div>
-                      <div className="text-sm text-gray-500">今月の収益</div>
+                      <div className="text-xs sm:text-sm text-gray-500">今月の収益</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-gray-800 mb-1">
+                      <div className="text-xl sm:text-3xl font-bold text-gray-800 mb-1">
                         ¥{Math.round(analytics.monthlyEarnings / 30).toLocaleString()}
                       </div>
-                      <div className="text-sm text-gray-500">日平均収益</div>
+                      <div className="text-xs sm:text-sm text-gray-500">日平均収益</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl shadow-sm p-6">
-                  <h3 className="font-semibold text-gray-800 mb-4">収益の内訳</h3>
-                  <div className="space-y-4">
+                <div className="bg-white rounded-2xl shadow-sm p-3 sm:p-6">
+                  <h3 className="font-semibold text-gray-800 mb-3 sm:mb-4 text-sm sm:text-base">収益の内訳</h3>
+                  <div className="space-y-3 sm:space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">サブスクリプション</span>
-                      <span className="font-semibold text-gray-800">¥{Math.round(analytics.monthlyEarnings * 0.7).toLocaleString()}</span>
+                      <span className="text-xs sm:text-sm text-gray-600">サブスクリプション</span>
+                      <span className="font-semibold text-gray-800 text-sm sm:text-base">¥{Math.round(analytics.monthlyEarnings * 0.7).toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">個別投稿販売</span>
-                      <span className="font-semibold text-gray-800">¥{Math.round(analytics.monthlyEarnings * 0.3).toLocaleString()}</span>
+                      <span className="text-xs sm:text-sm text-gray-600">個別投稿販売</span>
+                      <span className="font-semibold text-gray-800 text-sm sm:text-base">¥{Math.round(analytics.monthlyEarnings * 0.3).toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">チップ・投げ銭</span>
-                      <span className="font-semibold text-gray-800">¥{Math.round(analytics.monthlyEarnings * 0.1).toLocaleString()}</span>
+                      <span className="text-xs sm:text-sm text-gray-600">チップ・投げ銭</span>
+                      <span className="font-semibold text-gray-800 text-sm sm:text-base">¥{Math.round(analytics.monthlyEarnings * 0.1).toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
@@ -457,12 +473,12 @@ export default function CreatorDashboard() {
             )}
 
             {activeTab === "messages" && (
-              <div className="bg-white rounded-2xl shadow-sm p-6">
-                <h2 className="text-lg font-semibold text-gray-800 mb-4">メッセージ管理</h2>
-                <div className="text-center py-12">
-                  <MessageSquare className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-800 mb-2">メッセージ機能</h3>
-                  <p className="text-gray-500">購読者からのメッセージを管理できます</p>
+              <div className="bg-white rounded-2xl shadow-sm p-3 sm:p-6">
+                <h2 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4">メッセージ管理</h2>
+                <div className="text-center py-8 sm:py-12">
+                  <MessageSquare className="w-12 h-12 sm:w-16 sm:h-16 text-gray-300 mx-auto mb-3 sm:mb-4" />
+                  <h3 className="text-base sm:text-lg font-medium text-gray-800 mb-2">メッセージ機能</h3>
+                  <p className="text-sm sm:text-base text-gray-500">購読者からのメッセージを管理できます</p>
                 </div>
               </div>
             )}
